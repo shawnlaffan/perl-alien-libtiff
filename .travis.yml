@@ -1,6 +1,9 @@
 language: perl
 perl:
   - "5.30"
+    env: ALIEN_INSTALL_TYPE=share
+  - "5.30"
+    env: ALIEN_INSTALL_TYPE=system
   - "5.22"
 
 os:
