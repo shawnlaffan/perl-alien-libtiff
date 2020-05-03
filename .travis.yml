@@ -3,14 +3,21 @@ matrix:
     include:
         - perl: '5.30'
           env: ALIEN_INSTALL_TYPE=share
+          os: linux
         - perl: '5.28'
           env: ALIEN_INSTALL_TYPE=system
+          os: linux
         - perl: '5.22'
+          os: linux
+        - perl: '5.30'
+          env: ALIEN_INSTALL_TYPE=share
+          os: osx
+        - perl: '5.28'
+          env: ALIEN_INSTALL_TYPE=system
+          os: osx
+        - perl: '5.22'
+          os: osx
         
-os:
-  - linux
-  - osx
-
 
 sudo: required 
 
