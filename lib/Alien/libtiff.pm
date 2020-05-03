@@ -22,7 +22,7 @@ Alien::geotiff - Compile the Geotiff library
 <p>
     <img src="https://img.shields.io/badge/perl-5.10+-blue.svg" alt="Requires Perl 5.10+" />
     <a href="https://travis-ci.org/shawnlaffan/perl-alien-geotiff"><img src="https://travis-ci.org/shawnlaffan/perl-alien-geotiff.svg?branch=master" /></a>
-    <a href="https://ci.appveyor.com/project/shawnlaffan/perl-alien-geotiff"><img src="https://ci.appveyor.com/api/projects/status/weou0nr12huxqa72?svg=true" /></a>
+    <a href="https://ci.appveyor.com/project/shawnlaffan/perl-alien-geotiff"><img src="https://ci.appveyor.com/api/projects/status/otkk721431m8ag0a/branch/master?svg=true" /></a>
 </p>
 
 =end HTML
