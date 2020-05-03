@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use parent qw( Alien::Base );
 
-our $VERSION = '1.00';
+our $VERSION = '1.01';
 
 
 1;
@@ -13,7 +13,7 @@ __END__
 
 =head1 NAME
 
-Alien::geotiff - Compile the Geotiff library
+Alien::libtiff - Compile the libtiff library
 
 =head1 BUILD STATUS
  
@@ -21,15 +21,15 @@ Alien::geotiff - Compile the Geotiff library
  
 <p>
     <img src="https://img.shields.io/badge/perl-5.10+-blue.svg" alt="Requires Perl 5.10+" />
-    <a href="https://travis-ci.org/shawnlaffan/perl-alien-geotiff"><img src="https://travis-ci.org/shawnlaffan/perl-alien-geotiff.svg?branch=master" /></a>
-    <a href="https://ci.appveyor.com/project/shawnlaffan/perl-alien-geotiff"><img src="https://ci.appveyor.com/api/projects/status/otkk721431m8ag0a/branch/master?svg=true" /></a>
+    <a href="https://travis-ci.org/shawnlaffan/perl-alien-libtiff"><img src="https://travis-ci.org/shawnlaffan/perl-alien-libtiff.svg?branch=master" /></a>
+    <a href="https://ci.appveyor.com/project/shawnlaffan/perl-alien-libtiff"><img src="https://ci.appveyor.com/api/projects/status/otkk721431m8ag0a/branch/master?svg=true" /></a>
 </p>
 
 =end HTML
 
 =head1 SYNOPSIS
 
-    use Alien::geotiff;
+    use Alien::libtiff;
 
     
 =head1 DESCRIPTION
@@ -42,7 +42,7 @@ e.g. L<Alien::proj> or L<Geo::GDAL::FFI>.
 =head1 REPORTING BUGS
 
 Please send any bugs, suggestions, or feature requests to 
-L<https://github.com/shawnlaffan/perl-alien-geotiff/issues>.
+L<https://github.com/shawnlaffan/perl-alien-libtiff/issues>.
 
 =head1 SEE ALSO
 
