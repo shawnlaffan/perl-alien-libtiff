@@ -1,4 +1,4 @@
-# perl-alien-geotiff
+# perl-alien-libtiff
 Perl Alien module for libtiff
 
 [![Build status](https://ci.appveyor.com/api/projects/status/otkk721431m8ag0a/branch/master?svg=true)](https://ci.appveyor.com/project/shawnlaffan/perl-alien-libtiff/branch/master)
