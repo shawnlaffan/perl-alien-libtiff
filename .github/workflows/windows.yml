@@ -91,11 +91,20 @@ jobs:
 
 
       # Runs a set of commands using the runners shell
-      - name: Build
+      - name: Build system
         run: |
           perl Makefile.PL
           gmake
-          gmake test
+          gmake test TEST_VERBOSE=1
+
+
+      # Runs a set of commands using the runners shell
+      - name: Build shared
+        run: |
+          $env:ALIEN_INSTALL_TYPE="share"
+          perl Makefile.PL
+          gmake
+          gmake test TEST_VERBOSE=1
 
       #- name: Zip dirs for upload
       #  if: ${{ always() }}
