@@ -7,6 +7,7 @@ use File::Temp;
 use Env qw /@PATH/;
 
 alien_ok 'Alien::libtiff';
+diag(Alien::libtiff->install_type);
 
 SKIP: {
     skip "The default system install on Windows doesn't include libtiff tools",
