@@ -2,16 +2,14 @@ use strict;
 use warnings;
 use Test::More tests => 3;
 use Test::Alien;
-use Alien::Build;
 use Alien::libtiff;
 use File::Temp;
 
 alien_ok 'Alien::libtiff';
-my $build = Alien::Build->load('./alienfile');
 
 SKIP: {
     skip "The default system install on Windows doesn't include libtiff tools",
-      2 unless $build->install_type eq 'share';
+      2 unless Alien::libtiff->install_type eq 'share';
 
 my $pbmfile = File::Temp->new( SUFFIX => '.pbm' );
 my $dest    = File::Temp->new( SUFFIX => '.tif' );
