@@ -4,6 +4,7 @@ use Test::More tests => 3;
 use Test::Alien;
 use Alien::libtiff;
 use File::Temp;
+use Env qw /@PATH/;
 
 alien_ok 'Alien::libtiff';
 
@@ -36,6 +37,7 @@ print {$fh} $pbmheader;
 print {$fh} pack 'B*', $pbmdata;
 close $fh;
 
+unshift @PATH, Alien::libtiff->bin_dir;
 run_ok( [ 'ppm2tiff', "$pbmfile", "$dest" ] )->success;
 
 }
