@@ -17,7 +17,7 @@ env:
   #AUTOMATED_TESTING: 1
 
 jobs:
-  perl:
+  setup:
     runs-on: windows-latest
 
     steps:
@@ -90,7 +90,11 @@ jobs:
           gcc -v
 
 
-      # Runs a set of commands using the runners shell
+  build-system:
+    runs-on: windows-latest
+    needs: setup
+    steps:
+      - uses: actions/checkout@v2
       - name: Build system
         run: |
           perl Makefile.PL
@@ -98,7 +102,11 @@ jobs:
           gmake test TEST_VERBOSE=1
 
 
-      # Runs a set of commands using the runners shell
+  build-shared:
+    runs-on: windows-latest
+    needs: setup
+    steps:
+      - uses: actions/checkout@v2
       - name: Build shared
         run: |
           $env:ALIEN_INSTALL_TYPE="share"
