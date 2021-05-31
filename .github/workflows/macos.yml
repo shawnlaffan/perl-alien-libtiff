@@ -34,8 +34,8 @@ jobs:
           which perl
           which cpanm
 
-      - name: Install GDAL and its deps
-        run: brew install gdal
+      - name: Install libtiff and its deps
+        run: brew install libtiff
         
       - name: perl -V
         run: perl -V
@@ -56,19 +56,12 @@ jobs:
 
       - name: Install Dynamic Dependencies
         run: |
-          # cpanm --notest IO::Socket::SSL
-          #cpanm --notest FFI::Platypus::Declare
-          #cpanm --notest Task::Biodiverse::NoGUI
-          #cpanm Test2::Suite
-          #cpanm --notest --installdeps .
-          #cpanm --installdeps .
-          cpanm --notest Alien::Build
-          cpanm --notest Alien::Build::MM
-          cpanm --notest Sort::Versions
-          cpanm --notest Alien::Build::Plugin::PkgConfig::PPWrapper
-          cpanm --notest Alien::geos::af
-          cpanm --notest Alien::libtiff
-          cpanm --notest Alien::proj
+          cpanm --installdeps .
+          #cpanm --notest Alien::Build
+          #cpanm --notest Alien::Build::MM
+          #cpanm --notest Sort::Versions
+          #cpanm --notest Alien::Build::Plugin::PkgConfig::PPWrapper
+          #cpanm --notest Alien::Build::Plugin::Cleanse::BuildDir
       
       - name: Build and then run tests
         run: |

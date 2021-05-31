@@ -12,14 +12,7 @@ install:
   - set ST=C:\strawberry
   - set PATH=%ST%\perl\bin;%ST%\perl\site\bin;%ST%\c\bin;%PATH%
   - cd C:\projects\%APPVEYOR_PROJECT_NAME%
-  #  ensure we have some packages that aren't picked up by the install system
-  #  or that need updating
-  - cpanm --quiet --notest Alien::Build
-  - cpanm --quiet --notest Alien::Build::MM
-  - cpanm --quiet --notest Alien::Build::Plugin::Fetch::Cache
-  - cpanm --quiet --notest Sort::Versions
-  - cpanm --quiet --notest PkgConfig
-  - cpanm --quiet Alien::Build::Plugin::Cleanse::BuildDir
+
   - cpanm --quiet --notest --installdeps .
 
   - gcc -v

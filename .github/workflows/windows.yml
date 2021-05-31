@@ -17,9 +17,8 @@ env:
   #AUTOMATED_TESTING: 1
 
 jobs:
-  setup:
+  build-system:
     runs-on: windows-latest
-
     steps:
       - uses: actions/checkout@v2
 
@@ -63,28 +62,12 @@ jobs:
 
       - name: Install dependencies 1
         run: |
-          #cpanm --notest local::lib
-          #eval "$(perl -Mlocal::lib=${PWD}/perl_modules)"
-          cpanm --quiet --notest Alien::Build
-          cpanm --quiet --notest Alien::Build::MM
-          cpanm --quiet --notest Sort::Versions
-          cpanm --quiet --notest PkgConfig
-          cpanm --quiet --notest Alien::Build::Plugin::Cleanse::BuildDir
-          cpanm --quiet --notest File::Find::Rule
-          cpanm --quiet --notest Alien::Build::Plugin::Fetch::Cache
-          cpanm --quiet --notest Env::ShellWords
-          cpanm --quiet --notest File::Which
-
+          cpanm --notest --installdeps .
   
       - name: Install dependencies Alien::MSYS
         run: |
           cpanm --notest Alien::MSYS
 
-  build-system:
-    runs-on: windows-latest
-    needs: setup
-    steps:
-      - uses: actions/checkout@v2
       - name: Build system
         run: |
           perl Makefile.PL
@@ -92,12 +75,58 @@ jobs:
           gmake test TEST_VERBOSE=1
 
 
-  build-shared:
+  build-share:
     runs-on: windows-latest
-    needs: setup
     steps:
       - uses: actions/checkout@v2
-      - name: Build shared
+
+      - name: Set up Perl
+        run: |
+          choco install strawberryperl
+          echo "C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          
+      - name: perl -V
+        run: |
+          echo $env:PATH
+          perl -V
+        
+      - name: Prepare for CPAN cache
+        run: |
+          perl -V > perlversion.txt
+          echo 'file which' >> perlversion.txt
+          dir perlversion.txt
+
+      - name: Cache CPAN modules
+        uses: actions/cache@v1
+        with:
+          path: c:\cx
+          key: ${{ runner.os }}-build-${{ hashFiles('perlversion.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('perlversion.txt') }}
+
+      - name: Prepare for Alien cache
+        run: |
+          perl -V > aliencache.txt
+          echo 'aliens 20200604' >> aliencache.txt
+          dir aliencache.txt
+
+      - name: Cache Alien downloads
+        uses: actions/cache@v1
+        with:
+          path: C:\Users\runneradmin\.alienbuild
+          key: ${{ runner.os }}-build-${{ hashFiles('aliencache.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('aliencache.txt') }}
+
+      - name: Install dependencies 1
+        run: |
+          cpanm --notest --installdeps .
+  
+      - name: Install dependencies Alien::MSYS
+        run: |
+          cpanm --notest Alien::MSYS
+
+      - name: Build system
         run: |
           $env:ALIEN_INSTALL_TYPE="share"
           perl Makefile.PL
