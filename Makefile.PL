@@ -45,14 +45,20 @@ my %WriteMakefileArgs = (
             bugtracker => {
                 web => 'https://github.com/shawnlaffan/perl-alien-libtiff/issues/',
             },
-        },
+            },
     },
     "DISTNAME" => "Alien-libtiff",
     "LICENSE"  => "perl",
 );
 
 use Alien::Build::MM;
-my $abmm = Alien::Build::MM->new ();
+my $abmm = Alien::Build::MM->new (
+  clean_install => 1,
+);
+sub MY::install {
+  $abmm->mm_install(@_);
+}
+
 %WriteMakefileArgs = $abmm->mm_args(%WriteMakefileArgs);
 
 WriteMakefile(%WriteMakefileArgs);
